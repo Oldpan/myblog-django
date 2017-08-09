@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>Oldpan</title>
+    <title>{% block title %}Oldpan{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -12,7 +12,7 @@
 <script>
 $(document).ready(function(){
     $("a.front_text").mouseenter(function(){
-           $(this).css("background-color", "rgb(0, 100, 0)");
+           $(this).css("background-color", "rgb(0, 91, 38)");
            $(this).css("color", "white");
     });
     $("a.front_text").mouseleave(function(){
@@ -45,7 +45,7 @@ $(document).ready(function(){
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      <li><a class="front_text" href="#"><strong>主页</strong></a></li>
+      <li><a class="front_text" href="{% url 'first_page' %}"><strong>主页</strong></a></li>
       <li><a class="front_text" href="#"><strong>文章</strong></a></li>
       <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
       <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
