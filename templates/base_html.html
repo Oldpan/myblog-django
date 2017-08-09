@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>博客主页</title>
+    <title>Oldpan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -32,24 +32,42 @@ $(document).ready(function(){
 }
 </style>
 
-<nav class="navbar">
+
+<nav class="navbar navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a style="background-color:rgb(0, 102, 0);color: white;" class="navbar-brand" href="#"><strong>Oldpan的个人博客</strong></a>
+      <button style="background-color:rgb(0, 100, 0);" type="button" class="front_text navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span style="background-color:white;" class="icon-bar"></span>
+        <span style="background-color:white;" class="icon-bar"></span>
+        <span style="background-color:white;" class="icon-bar"></span>
+      </button>
+      <a style="background-color:rgb(0, 102, 0);color: white;" class="navbar-brand" href="#"><strong>Oldpan的个人空间</strong></a>
     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
       <li><a class="front_text" href="#"><strong>主页</strong></a></li>
       <li><a class="front_text" href="#"><strong>文章</strong></a></li>
       <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
-      <li><a class="front_text" href="#"><strong>待开发</strong></a></li>
+      <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a class="front_text" href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
       <li><a class="front_text" href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
     </ul>
-
+   </div>
   </div>
 </nav>
+
+<br><br>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align: center;"><strong>Oldpan</strong>的个人主页</h1>
+    <p style="text-align: center;">程序、游戏聚集地，热爱生活，更热爱洛奇</p>
+  </div>
+</div>
+
+
 
 
 
