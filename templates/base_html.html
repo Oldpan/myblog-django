@@ -41,14 +41,16 @@ $(document).ready(function(){
         <span style="background-color:white;" class="icon-bar"></span>
         <span style="background-color:white;" class="icon-bar"></span>
       </button>
-      <a style="background-color:rgb(0, 102, 0);color: white;" class="navbar-brand" href="#"><strong>Oldpan的个人空间</strong></a>
+      <a style="background-color:rgb(0, 102, 0);color: white;" class="navbar-brand" href="{% url 'oldpan' %}"><strong>Oldpan的个人空间</strong></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
+        {% block front%}
       <li><a class="front_text" href="{% url 'first_page' %}"><strong>主页</strong></a></li>
       <li><a class="front_text" href="#"><strong>文章</strong></a></li>
       <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
       <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
+        {% endblock %}
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a class="front_text" href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>

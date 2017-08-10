@@ -14,11 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
 from django.views.generic import TemplateView
+import xadmin
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='base_html.html'), name='oldpan'),
     url(r'^first_page$', TemplateView.as_view(template_name='first_page.html'), name='first_page'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^xadmin/', xadmin.site.urls),
 ]

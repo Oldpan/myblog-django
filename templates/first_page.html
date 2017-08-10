@@ -4,8 +4,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    {% block title %}主页{% endblock %}
 </head>
+
+{% block front%}
+    <li><a style="background-color:rgb(0, 91, 38);color:white;"  href="{% url 'first_page' %}"><strong>主页</strong></a></li>
+    <li><a class="front_text" href="#"><strong>文章</strong></a></li>
+    <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
+    <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
+{% endblock %}
+
+
+
+
+
 <body>
 
 
