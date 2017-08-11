@@ -9,12 +9,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "文章分类"
+        verbose_name_plural = verbose_name
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=20, verbose_name=u"标签名称")
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "文章标签"
+        verbose_name_plural = verbose_name
 
 
 class Blog(models.Model):
@@ -28,6 +36,10 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "文章信息"
+        verbose_name_plural = verbose_name
+
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, verbose_name=u"博客")
@@ -38,4 +50,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+    class Meta:
+        verbose_name = "文章评论"
+        verbose_name_plural = verbose_name
 
