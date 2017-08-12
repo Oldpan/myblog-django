@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
+{% load staticfiles %}
+
 <head>
-    <meta charset="UTF-8">
     <title>{% block title %}Oldpan{% endblock %}</title>
+
+    <!-- meta -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js">
-    </script>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!-- js -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+    <script src="{% static 'js/modernizr.custom.js' %}"></script>
+</head>
+
 
 <script>
 $(document).ready(function(){
@@ -20,8 +34,6 @@ $(document).ready(function(){
     });
 });
 </script>
-</head>
-
 
 <style>
 .navbar {
@@ -70,11 +82,11 @@ $(document).ready(function(){
 </div>
 
 
-
-
-
-
 <body>
+{% block body %}
 
+{% endblock %}
 </body>
+
+
 </html>

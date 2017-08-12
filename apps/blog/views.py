@@ -9,9 +9,9 @@ class BlogView(View):
     # 博客预览
     def get(self, request):
 
-        all_articles = Blog.objects.all()
+        articles_list = Blog.objects.all().order_by('-created_time')
 
-        return render(request, 'blog_page.html', {"all_articles": all_articles})
+        return render(request, 'blog_page.html', {"articles_list": articles_list})
 
 
 # 文章内容显示
