@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.urls import reverse
 
 
 # Create your models here.
@@ -32,6 +33,7 @@ class Blog(models.Model):
     created_time = models.DateTimeField(default=datetime.now)
     category = models.ForeignKey(Category, verbose_name=u"分类")
     tags = models.ManyToManyField(Tag, verbose_name=u"标签")
+    abstract = models.CharField(max_length=250, verbose_name=u"摘要")
 
     def __str__(self):
         return self.title
@@ -39,6 +41,11 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "文章信息"
         verbose_name_plural = verbose_name
+
+    # 自定义 get_absolute_url 方法
+    # 记得从 django.urls 中导入 reverse 函数
+    def get_absolute_url(self):
+        return reverse('blog:article_page', kwargs={'pk': self.pk})
 
 
 class Comment(models.Model):

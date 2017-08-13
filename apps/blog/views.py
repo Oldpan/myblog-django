@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Blog, Comment, Tag, Category
 
@@ -9,28 +9,20 @@ class BlogView(View):
     # 博客预览
     def get(self, request):
 
-        articles_list = Blog.objects.all().order_by('-created_time')
+        post_list = Blog.objects.all().order_by('-created_time')
 
-        return render(request, 'blog_page.html', {"articles_list": articles_list})
+        return render(request, 'blog_page.html', {"post_list": post_list})
 
 
 # 文章内容显示
 class ArticleView(View):
     # 文章
 
-    def get(self, request):
+    def get(self, request, pk):
 
-        all_articles = Blog.objects.all()
-        all_comments = Comment.objects.all()
-        all_tags = Tag.objects.all()
-        all_category = Category.objects.all()
+        post = get_object_or_404(Blog, pk=pk)
 
-        return render(request, 'article_page.html', {
-            "all_articles": all_articles,
-            "all_comments": all_comments,
-            "all_tags": all_tags,
-            "all_category": all_category
-        })
+        return render(request, 'article_page.html', context={'post': post})
 
 
 

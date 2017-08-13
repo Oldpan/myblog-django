@@ -6,7 +6,7 @@ import xadmin
 
 
 class BlogAdmin(object):
-    list_display = ['title', 'author',  'content', 'created_time', 'tags', 'category']
+    list_display = ['title', 'abstract', 'author',  'content', 'created_time', 'tags', 'category']
     search_fields = ['title', 'author',  'content', 'tags', 'category']
     list_filter = ['title', 'author',  'content', 'created_time', 'tags', 'category']
 

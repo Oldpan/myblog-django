@@ -59,7 +59,7 @@ $(document).ready(function(){
     <ul class="nav navbar-nav">
         {% block front%}
       <li><a class="front_text" href="{% url 'first_page' %}"><strong>主页</strong></a></li>
-      <li><a class="front_text" href="{% url 'blog_page' %}"><strong>文章</strong></a></li>
+      <li><a class="front_text" href="{% url 'blog:blog_page' %}"><strong>文章</strong></a></li>
       <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
       <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
         {% endblock %}
@@ -76,7 +76,7 @@ $(document).ready(function(){
 
 <div class="container">
   <div class="jumbotron">
-    <h1 style="text-align: center;"><strong>Oldpan</strong>的个人主页</h1>
+    <h1 style="text-align: center;font-family: 'Microsoft YaHei UI'"><strong>Oldpan的个人主页</strong></h1>
     <p style="text-align: center;">程序、游戏聚集地，热爱生活，更热爱洛奇</p>
   </div>
 </div>

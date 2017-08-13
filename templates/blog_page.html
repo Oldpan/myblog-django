@@ -4,111 +4,44 @@
 
 {% block front%}
     <li><a class="front_text" href="{% url 'first_page' %}"><strong>主页</strong></a></li>
-    <li><a style="background-color:rgb(0, 91, 38);color:white;"  href="{% url 'blog_page' %}"><strong>文章</strong></a></li>
+    <li><a style="background-color:rgb(0, 91, 38);color:white;"  href="{% url 'blog:blog_page' %}"><strong>文章</strong></a></li>
     <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
     <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
 {% endblock %}
 
 {% block body %}
 
-</div>
-
 <div class="content-body">
     <div class="container">
         <div class="row">
             <main class="col-md-8">
+                {% for post in post_list %}
                 <article class="post post-1">
                     <header class="entry-header">
                         <h1 class="entry-title">
-                            <a style="color: rgb(81,153,107);" href="#"><h2><strong>Django 博客开发入门教程：前言</strong></h2></a>
+                            <a style="color: rgb(81,153,107);font-family: 'Adobe 楷体 Std R'" href="{{ post.get_absolute_url }}"><h2><strong>{{ post.title }}</strong></h2></a>
                         </h1>
                         <div class="entry-meta">
-                            <button class="btn btn-primary"><a style="color: white;" href="#">Django 博客教程</a></button>
-                            <button class="btn btn-success"><a href="#"><time class="entry-date"
-                                                                      datetime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></button>
-                            <button class="btn btn-info"><a href="#">追梦人物</a></button>
-                            <button class="btn btn-warning"><a href="#">4 评论</a></button>
-                            <button class="btn btn-danger"><a href="#">588 阅读</a></button>
+                            <button class="btn btn-primary btn-xs"><a style="color: white;font-family: 'Times New Roman';" href="#">{{ post.category.name }}</a></button>
+                            <button class="btn btn-success btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="#"><time class="entry-date"
+                                                                      datetime="2012-11-09T23:15:57+00:00">{{ post.created_time }}</time></a></button>
+                            <button class="btn btn-info btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="#">{{ post.author }}</a></button>
+                            <button class="btn btn-warning btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="#">4 评论</a></button>
+                            <button class="btn btn-danger btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="#">588 阅读</a></button>
                         </div>
                     </header>
                     <div class="entry-content clearfix">
-                        <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
-                            开发的技巧...</p>
-                        <div class="read-more cl-effect-14">
-                            <a href="#" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-                        </div>
+                        <p>{{ post.abstract }}</p>
                     </div>
                 </article>
+                {% empty %}
+                    <div class="no-post">暂时还没有发布的文章！</div>
+                {% endfor %}
 
 
-                <article class="post post-2">
-                    <header class="entry-header">
-                        <h1 class="entry-title">
-                            <a href="single.html">Django 博客开发入门教程：前言</a>
-                        </h1>
-                        <div class="entry-meta">
-                            <span class="post-category"><a href="#">Django 博客教程</a></span>
-                            <span class="post-date"><a href="#"><time class="entry-date"
-                                                                      datetime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
-                            <span class="post-author"><a href="#">追梦人物</a></span>
-                            <span class="comments-link"><a href="#">4 评论</a></span>
-                            <span class="views-count"><a href="#">588 阅读</a></span>
-                        </div>
-                    </header>
-                    <div class="entry-content clearfix">
-                        <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
-                            开发的技巧...</p>
-                        <div class="read-more cl-effect-14">
-                            <a href="#" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-                        </div>
-                    </div>
-                </article>
 
-                <article class="post post-3">
-                    <header class="entry-header">
-                        <h1 class="entry-title">
-                            <a href="single.html">Django 博客开发入门教程：前言</a>
-                        </h1>
-                        <div class="entry-meta">
-                            <span class="post-category"><a href="#">Django 博客教程</a></span>
-                            <span class="post-date"><a href="#"><time class="entry-date"
-                                                                      datetime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
-                            <span class="post-author"><a href="#">追梦人物</a></span>
-                            <span class="comments-link"><a href="#">4 评论</a></span>
-                            <span class="views-count"><a href="#">588 阅读</a></span>
-                        </div>
-                    </header>
-                    <div class="entry-content clearfix">
-                        <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
-                            开发的技巧...</p>
-                        <div class="read-more cl-effect-14">
-                            <a href="#" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-                        </div>
-                    </div>
-                </article>
 
-                <article class="post post-4">
-                    <header class="entry-header">
-                        <h1 class="entry-title">
-                            <a href="single.html">Django 博客开发入门教程：前言</a>
-                        </h1>
-                        <div class="entry-meta">
-                            <span class="post-category"><a href="#">Django 博客教程</a></span>
-                            <span class="post-date"><a href="#"><time class="entry-date"
-                                                                      datetime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
-                            <span class="post-author"><a href="#">追梦人物</a></span>
-                            <span class="comments-link"><a href="#">4 评论</a></span>
-                            <span class="views-count"><a href="#">588 阅读</a></span>
-                        </div>
-                    </header>
-                    <div class="entry-content clearfix">
-                        <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
-                            开发的技巧...</p>
-                        <div class="read-more cl-effect-14">
-                            <a href="#" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-                        </div>
-                    </div>
-                </article>
+
                 <!-- 简单分页效果
                 <div class="pagination-simple">
                     <a href="#">上一页</a>
@@ -116,6 +49,7 @@
                     <a href="#">下一页</a>
                 </div>
                 -->
+
                 <div class="pagination">
                     <ul>
                         <li><a href="">1</a></li>
@@ -130,9 +64,10 @@
                     </ul>
                 </div>
             </main>
+
             <aside class="col-md-4">
                 <div class="widget widget-recent-posts">
-                    <h3 class="widget-title">最新文章</h3>
+                    <h3 style="color: rgb(16,137,88);" class="widget-title"><strong>最新文章</strong></h3>
                     <ul>
                         <li>
                             <a href="#">Django 博客开发入门教程：前言</a>
@@ -146,7 +81,7 @@
                     </ul>
                 </div>
                 <div class="widget widget-archives">
-                    <h3 class="widget-title">归档</h3>
+                    <h3 style="color: rgb(16,137,88);"  class="widget-title"><strong>归档</strong></h3>
                     <ul>
                         <li>
                             <a href="#">2017 年 5 月</a>
@@ -161,22 +96,16 @@
                 </div>
 
                 <div class="widget widget-category">
-                    <h3 class="widget-title">分类</h3>
+                    <h3 style="color: rgb(16,137,88);"  class="widget-title"><strong>分类</strong></h3>
                     <ul>
-                        <li>
-                            <a href="#">Django 博客教程 <span class="post-count">(13)</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Python 教程 <span class="post-count">(11)</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Django 用户认证 <span class="post-count">(8)</span></a>
-                        </li>
+                        <a href="#">News <span class="badge">5</span></a><br>
+                        <a href="#">Comments <span class="badge">10</span></a><br>
+                        <a href="#">Updates <span class="badge">2</span></a>
                     </ul>
                 </div>
 
                 <div class="widget widget-tag-cloud">
-                    <h3 class="widget-title">标签云</h3>
+                    <h3 style="color: rgb(16,137,88);"  class="widget-title"><strong>标签云</strong></h3>
                     <ul>
                         <li>
                             <a href="#">Django</a>
@@ -224,7 +153,7 @@
             <div class="col-md-12">
                 <p class="copyright">&copy 2017 - 采集自<a href="http://www.cssmoban.com/"
                                                         target="_blank" title="模板之家">模板之家</a>
-                    - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">追梦人物的博客</a>修改
+                    - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">OLDPAN的博客</a>修改
                 </p>
             </div>
         </div>
