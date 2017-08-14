@@ -1,7 +1,9 @@
 __author__ = 'oldpan'
 __date__ = '2017/8/10 19:51'
 
-from .models import Blog, Tag, Category, Comment
+
+from .models import Blog, Tag, Category
+from comments.models import Comment
 import xadmin
 
 
@@ -24,9 +26,9 @@ class CategoryAdmin(object):
 
 
 class CommentAdmin(object):
-    list_display = ['blog', 'name', 'email', 'content', 'created_time']
+    list_display = ['blog', 'name', 'url', 'email', 'content', 'created_time']
     search_fields = ['blog', 'name', 'email', 'content']
-    list_filter = ['blog', 'name', 'email', 'content']
+    list_filter = ['blog', 'name', 'url', 'email', 'content']
 
 
 xadmin.site.register(Blog, BlogAdmin)

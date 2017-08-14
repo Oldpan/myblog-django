@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 from django.urls import reverse
+from django.utils.html import strip_tags
+import markdown
 
 
 # Create your models here.
@@ -33,7 +35,8 @@ class Blog(models.Model):
     created_time = models.DateTimeField(default=datetime.now)
     category = models.ForeignKey(Category, verbose_name=u"分类")
     tags = models.ManyToManyField(Tag, verbose_name=u"标签")
-    abstract = models.CharField(max_length=250, verbose_name=u"摘要")
+    abstract = models.CharField(max_length=250, verbose_name=u"摘要", blank=True)
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -47,18 +50,25 @@ class Blog(models.Model):
     def get_absolute_url(self):
         return reverse('blog:article_page', kwargs={'pk': self.pk})
 
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
 
-class Comment(models.Model):
-    blog = models.ForeignKey(Blog, verbose_name=u"博客")
-    name = models.CharField("称呼", max_length=18)
-    email = models.EmailField("邮箱", max_length=50)
-    content = models.CharField("内容", max_length=300)
-    created_time = models.DateTimeField("发布时间", auto_now_add=True)
+    def save(self, *args, **kwargs):
+        # 如果没有填写摘要
+        if not self.abstract:
+            # 首先实例化一个 Markdown 类，用于渲染 body 的文本
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+            ])
+            # 先将 Markdown 文本渲染成 HTML 文本
+            # strip_tags 去掉 HTML 文本的全部 HTML 标签
+            # 从文本摘取前 54 个字符赋给 excerpt
+            self.abstract = strip_tags(md.convert(self.content))[:54]
 
-    def __str__(self):
-        return self.content
+        # 调用父类的 save 方法将数据保存到数据库中
+        super(Blog, self).save(*args, **kwargs)
 
-    class Meta:
-        verbose_name = "文章评论"
-        verbose_name_plural = verbose_name
+
 

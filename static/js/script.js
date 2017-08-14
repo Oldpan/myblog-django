@@ -110,6 +110,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
+
 (function() {
     var triggerBttn = document.getElementById( 'trigger-overlay' ),
         overlay = document.querySelector( 'div.overlay' ),
