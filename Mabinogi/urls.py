@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.views.generic import TemplateView
+from blog.feeds import AllPostsRssFeed
 import xadmin
 
 urlpatterns = [
@@ -23,4 +24,6 @@ urlpatterns = [
     url(r'', include('comments.urls')),
     url(r'^first_page$', TemplateView.as_view(template_name='first_page.html'), name='first_page'),
     url(r'^xadmin/', xadmin.site.urls),
+    url(r'^all/rss/$', AllPostsRssFeed(), name='rss'),
+    url(r'^search/', include('haystack.urls')),
 ]

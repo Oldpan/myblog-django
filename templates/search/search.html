@@ -1,0 +1,46 @@
+{% extends 'blog_page.html' %}
+{% load highlight %}
+
+
+ {% block main %}
+            <main class="col-md-8">
+                {% if query %}
+                {% for result in page.object_list %}
+                <article class="result.object result.object-{{ result.object.pk }}">
+                    <header class="entry-header">
+                        <h1 class="entry-title">
+                            <a style="color: rgb(81,153,107);font-family: 'Adobe 楷体 Std R'" href="{{ result.object.get_absolute_url }}"><h2><strong>{% highlight result.object.title with query %}</strong></h2></a>
+                        </h1>
+                        <div class="entry-meta">
+                            <button class="btn btn-primary btn-xs"><a style="color: white;font-family: 'Times New Roman';" href="{% url 'blog:category_page' result.object.category.pk %}">{{  result.object.category.name  }}</a></button>
+                            <button class="btn btn-success btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="#"><time class="entry-date"
+                                                                      datetime="2012-11-09T23:15:57+00:00">{{ result.object.created_time }}</time></a></button>
+                            <button class="btn btn-info btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="#">{{ result.object.author }}</a></button>
+                            <button class="btn btn-warning btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="{{ result.object.get_absolute_url }}">{{ result.object.comment_set.count }} 评论</a></button>
+                            <button class="btn btn-danger btn-xs"><a style="color: white;font-family: 'Times New Roman';"  href="{{ result.object.get_absolute_url }}">{{ result.object.views }} 阅读</a></button>
+                        </div>
+                    </header>
+                    <div class="entry-content clearfix">
+                        <p>{% highlight result.object.body with query %} </p>
+                    </div>
+                </article>
+                {% empty %}
+                    <div class="no-result.object">没有搜索到的结果！</div>
+                {% endfor %}
+
+              {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}
+                        <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
+                    {% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next
+                    &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+            {% else %}
+                请输入搜索关键词，例如 django
+            {% endif %}
+
+            </main>
+        {% endblock main %}

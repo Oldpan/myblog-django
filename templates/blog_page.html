@@ -11,12 +11,36 @@
     <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
 {% endblock %}
 
+<style>
+    span.highlighted {
+        color: red;
+    }
+</style>
 
 {% block body %}
+
 <div class="content-body">
     <div class="container">
-        <div class="row">
+    <div class="well" style=" padding-bottom: 10px; padding-top: 10px;">
 
+        <div class="row">
+            <div class="col-sm-4">.col-sm-4</div>
+            <div class="col-sm-4">.col-sm-4</div>
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-2">
+                <form role="search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+                  <input type="search" name="q" placeholder="搜索" required>
+                  <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+        <div class="row">
             {% block main %}
             <main class="col-md-8">
                 {% for post in post_list %}
@@ -42,35 +66,40 @@
                     <div class="no-post">暂时还没有发布的文章！</div>
                 {% endfor %}
 
-
-
-
-
-                <!-- 简单分页效果
-                <div class="pagination-simple">
-                    <a href="#">上一页</a>
-                    <span class="current">第 6 页 / 共 11 页</span>
-                    <a href="#">下一页</a>
-                </div>
-                -->
-
+                {% if is_paginated %}
                 <div class="pagination">
-                    <ul>
-                        <li><a href="">1</a></li>
-                        <li><a href="">...</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li class="current"><a href="">6</a></li>
-                        <li><a href="">7</a></li>
-                        <li><a href="">8</a></li>
-                        <li><a href="">...</a></li>
-                        <li><a href="">11</a></li>
-                    </ul>
+                  {% if first %}
+                    <a href="?page=1">1</a>
+                  {% endif %}
+                  {% if left %}
+                    {% if left_has_more %}
+                        <span>...</span>
+                    {% endif %}
+                    {% for i in left %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endfor %}
+                  {% endif %}
+                  <a href="?page={{ page_obj.number }}" style="color: red">{{ page_obj.number }}</a>
+                  {% if right %}
+                    {% for i in right %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endfor %}
+                    {% if right_has_more %}
+                        <span>...</span>
+                    {% endif %}
+                  {% endif %}
+                  {% if last %}
+                    <a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                  {% endif %}
                 </div>
+                {% endif %}
+
             </main>
         {% endblock main %}
 
             <aside class="col-md-4">
+            {% block catalogue %}
+                {% endblock %}
                 <div class="widget widget-recent-posts">
                     <h3 style="color: rgb(16,137,88);" class="widget-title"><strong>最新文章</strong></h3>
                     {% get_recent_posts as recent_post_list %}
@@ -103,7 +132,7 @@
                     {% get_categories as category_list %}
                     {% for category in category_list %}
                     <ul>
-                        <a href="{% url 'blog:category_page' category.pk %}">{{ category.name }} <span class="badge">5</span></a><br>
+                        <a href="{% url 'blog:category_page' category.pk %}">{{ category.name }} <span class="badge">{{ category.num_posts }}</span></a><br>
                     </ul>
                     {% empty %}
                     暂无分类
@@ -111,42 +140,20 @@
                 </div>
 
                 <div class="widget widget-tag-cloud">
-                    <h3 style="color: rgb(16,137,88);"  class="widget-title"><strong>标签云</strong></h3>
-                    <ul>
-                        <li>
-                            <a href="#">Django</a>
-                        </li>
-                        <li>
-                            <a href="#">Python</a>
-                        </li>
-                        <li>
-                            <a href="#">Java</a>
-                        </li>
-                        <li>
-                            <a href="#">笔记</a>
-                        </li>
-                        <li>
-                            <a href="#">文档</a>
-                        </li>
-                        <li>
-                            <a href="#">AngularJS</a>
-                        </li>
-                        <li>
-                            <a href="#">CSS</a>
-                        </li>
-                        <li>
-                            <a href="#">JavaScript</a>
-                        </li>
-                        <li>
-                            <a href="#">Snippet</a>
-                        </li>
-                        <li>
-                            <a href="#">jQuery</a>
-                        </li>
-                    </ul>
+                  <h3 class="widget-title">标签云</h3>
+                  {% get_tags as tag_list %}
+                  <ul>
+                    {% for tag in tag_list %}
+                    <li>
+                      <a href="{% url 'blog:tag_page' tag.pk %}">{{ tag.name }}</a>
+                    </li>
+                    {% empty %}
+                    暂无标签！
+                    {% endfor %}
+                  </ul>
                 </div>
                 <div class="rss">
-                    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                    <a href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
             </aside>
         </div>

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'blog',
     'main',
-    'comments'
+    'comments',
+    'haystack'
 ]
 
 MIDDLEWARE = [
@@ -91,6 +92,16 @@ DATABASES = {
         "HOST": '127.0.0.1'
     }
 }
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'apps.blog.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 
 # Password validation

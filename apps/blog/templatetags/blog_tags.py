@@ -1,9 +1,9 @@
 __author__ = 'oldpan'
 __date__ = '2017/8/14 10:00'
 
-from ..models import Blog, Category
+from django.db.models.aggregates import Count
+from ..models import Blog, Category, Tag
 from django import template
-
 
 register = template.Library()
 
@@ -20,4 +20,9 @@ def archives():
 
 @register.simple_tag
 def get_categories():
-    return Category.objects.all()
+    return Category.objects.annotate(num_posts=Count('blog')).filter(num_posts__gt=0)
+
+
+@register.simple_tag
+def get_tags():
+    return Tag.objects.annotate(num_posts=Count('blog')).filter(num_posts__gt=0)
