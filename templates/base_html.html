@@ -1,10 +1,10 @@
+{#Base_page:the first page to show when open the website#}
 <!DOCTYPE html>
 <html lang="zh-Hans">
 {% load staticfiles %}
 
-
 <head>
-    <title>{% block title %}Oldpan{% endblock %}</title>
+    <title>{% block title %}Cool!Hack!{% endblock %}</title>
 
     <!-- meta -->
     <meta charset="UTF-8">
@@ -16,80 +16,47 @@
     <link rel="stylesheet" href="{% static 'css/pace.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'css/highlights/github.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tagcloud.css' %}">
 
     <!-- js -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{% static 'js/pace.min.js' %}"></script>
     <script src="{% static 'js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'js/tagcloud.min.js' %}"></script>
 </head>
 
-
-<script>
-$(document).ready(function(){
-    $("a.front_text").mouseenter(function(){
-           $(this).css("background-color", "rgb(0, 91, 38)");
-           $(this).css("color", "white");
-    });
-    $("a.front_text").mouseleave(function(){
-           $(this).css("background-color", "rgb(0, 153, 0)");
-    });
-});
-</script>
-
-<style>
-.navbar {
-    background-color:rgb(0, 153, 0);
-}
-.front_text{
-    color: white;
-}
-</style>
-
-
-
-<nav class="navbar navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button style="background-color:rgb(0, 100, 0);" type="button" class="front_text navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span style="background-color:white;" class="icon-bar"></span>
-        <span style="background-color:white;" class="icon-bar"></span>
-        <span style="background-color:white;" class="icon-bar"></span>
-      </button>
-      <a style="background-color:rgb(0, 153, 0);color: white;" class="navbar-brand" href="{% url 'oldpan' %}"><strong>Oldpan的个人空间</strong></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
-        {% block front%}
-      <li><a class="front_text" href="{% url 'first_page' %}"><strong>主页</strong></a></li>
-      <li><a class="front_text" href="{% url 'blog:blog_page' %}"><strong>文章</strong></a></li>
-      <li><a class="front_text" href="#"><strong>实验室</strong></a></li>
-      <li><a class="front_text" href="#"><strong>推荐好书</strong></a></li>
-        {% endblock %}
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a class="front_text" href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-      <li><a class="front_text" href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-    </ul>
-   </div>
-  </div>
-</nav>
-
-<br><br>
+{% include "includes/top_menu.html" %}
 
 <div class="container">
-  <div class="jumbotron">
-    <h1 style="text-align: center;font-family: 'Microsoft YaHei UI'"><strong>Oldpan的个人主页</strong></h1>
-    <p style="text-align: center;">程序、游戏聚集地，热爱生活，更热爱洛奇</p>
+  <div class="jumbotron" >
+    <h1 style="text-align: center;font-family: 'Microsoft YaHei UI'"><strong>Cool! 极客</strong></h1>
+    <p style="text-align: center;">编程、科技、游戏聚集地，分享最新科技，探讨编程技术</p>
   </div>
+    <div class="well" style=" padding-bottom: 0px; padding-top: 0px;">
+        <div class="row">
+            <div class="col-sm-4"> </div>
+            <div class="col-sm-4"> </div>
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-2">
+                <form role="search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+                  <input type="search" name="q" placeholder="搜索" required>
+                  <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
 
 <body>
 {% block body %}
 
 {% endblock %}
-</body>
 
+
+<script type="text/javascript">
+    tagcloud();
+</script>
+</body>
 
 </html>

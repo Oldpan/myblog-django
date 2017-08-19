@@ -19,10 +19,9 @@ from blog.feeds import AllPostsRssFeed
 import xadmin
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='base_html.html'), name='oldpan'),
+    url(r'^$', TemplateView.as_view(template_name='base_html.html'), name='main_page'),
     url(r'^blog/', include('apps.blog.urls')),
     url(r'', include('comments.urls')),
-    url(r'^first_page$', TemplateView.as_view(template_name='first_page.html'), name='first_page'),
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^all/rss/$', AllPostsRssFeed(), name='rss'),
     url(r'^search/', include('haystack.urls')),

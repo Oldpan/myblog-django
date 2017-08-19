@@ -2,13 +2,12 @@
 {% load staticfiles %}
 {% block title %}{{ post.title }}{% endblock %}
 
-
         {% block main %}
-            <main class="col-md-8">
+            <main class="col-md-6">
                 <article class="post post-1">
                     <header class="entry-header">
                         <h1 class="entry-title">
-                            <a style="color: rgb(81,153,107);font-family: 'Adobe 楷体 Std R'" href="#"><h2><strong>{{ post.title }}</strong></h2></a>
+                            <a style="color: rgb(81,153,107);font-family: 'Microsoft YaHei UI'" href="#"><h2><strong>{{ post.title }}</strong></h2></a>
                         </h1>
                         <div class="entry-meta">
                             <button class="btn btn-primary btn-xs"><a style="color: white;font-family: 'Times New Roman';" href="#">{{ post.category.name }}</a></button>
@@ -56,8 +55,8 @@
                     <ul class="comment-list list-unstyled">
                       {% for comment in comment_list %}
                       <li class="comment-item">
-                        <span class="nickname">{{ comment.name }}</span>
-                        <time class="submit-date">{{ comment.created_time }}</time>
+                        <span class="nickname" style="font-family: 'Microsoft YaHei UI'">{{ comment.name }}</span>
+                        <time class="submit-date" style="font-family: 'Microsoft YaHei UI'">{{ comment.created_time }}</time>
                         <div class="text">
                           {{ comment.content }}
                         </div>
@@ -72,9 +71,9 @@
 
             {% block catalogue %}
                 <div class="widget widget-content">
-                    <h3 class="widget-title">文章目录</h3>
-                    {{ post.toc|safe }}
+                    <h3 class="widget-title" style="color:black;font-family: 'Microsoft YaHei UI'"><strong>文章目录</strong></h3>
+                        {{ post.toc|safe }}
                 </div>
-                {% endblock %}
+            {% endblock %}
 
 

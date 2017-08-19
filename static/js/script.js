@@ -1,5 +1,10 @@
 var searchvisible = 0;
 
+// $(document).ready(function(){
+//     tagcloud();
+// });
+
+
 $("#search-menu").click(function(e){ 
     //This stops the page scrolling to the top on a # link.
     e.preventDefault();
