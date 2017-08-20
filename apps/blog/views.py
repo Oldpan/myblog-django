@@ -191,7 +191,7 @@ class BlogView(ListView):
 
 
 class ArticleView(DetailView):
-    # 这些属性的含义和 ListView 是一样的
+
     model = Blog
     template_name = 'article_page.html'
     context_object_name = 'post'
