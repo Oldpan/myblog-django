@@ -26,9 +26,9 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = '$4urvc13^v!)^#(c$ag#33%$r%u!-q3k46dq#v@t9ip5js*4mi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'coolesthacker.com', 'www.coolesthakcer.com']
 
 
 # Application definition
@@ -141,6 +141,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/templatetags/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "statics/")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
