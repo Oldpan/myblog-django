@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import sys
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
@@ -28,8 +27,7 @@ SECRET_KEY = '$4urvc13^v!)^#(c$ag#33%$r%u!-q3k46dq#v@t9ip5js*4mi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'coolesthacker.com', 'www.coolesthakcer.com']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '45.76.205.134', 'coolesthacker.com', 'www.coolesthakcer.com']
 
 # Application definition
 
@@ -79,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Mabinogi.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -93,7 +90,6 @@ DATABASES = {
     }
 }
 
-
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'apps.blog.whoosh_cn_backend.WhooshEngine',
@@ -102,7 +98,6 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -122,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -136,11 +130,11 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/templatetags/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "statics/")
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
+                    os.path.join(BASE_DIR, '/apps/blog/templatetags'),
+                    ]
