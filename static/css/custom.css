@@ -138,13 +138,6 @@ img {
     border-bottom: 0;
 }
 
-.navbar-toggle {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    margin-right: 25px;
-}
-
 .navbar-toggle span {
     font-size: 2em;
     color: #000;
