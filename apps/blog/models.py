@@ -45,8 +45,6 @@ class Blog(models.Model):
         verbose_name = "文章信息"
         verbose_name_plural = verbose_name
 
-    # 自定义 get_absolute_url 方法
-    # 记得从 django.urls 中导入 reverse 函数
     def get_absolute_url(self):
         return reverse('blog:article_page', kwargs={'pk': self.pk})
 
@@ -55,19 +53,16 @@ class Blog(models.Model):
         self.save(update_fields=['views'])
 
     def save(self, *args, **kwargs):
-        # 如果没有填写摘要
+
         if not self.abstract:
-            # 首先实例化一个 Markdown 类，用于渲染 body 的文本
+
             md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
             ])
-            # 先将 Markdown 文本渲染成 HTML 文本
-            # strip_tags 去掉 HTML 文本的全部 HTML 标签
-            # 从文本摘取前 54 个字符赋给 excerpt
+
             self.abstract = strip_tags(md.convert(self.content))[:54]
 
-        # 调用父类的 save 方法将数据保存到数据库中
         super(Blog, self).save(*args, **kwargs)
 
 
