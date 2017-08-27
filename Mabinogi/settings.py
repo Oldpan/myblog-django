@@ -136,5 +136,5 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "statics/")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
-                    os.path.join(BASE_DIR, '/apps/blog/templatetags'),
+                    os.path.join(BASE_DIR, '/root/.pyenv/versions/3.6.1/envs/my-virtual-env-3.6.1/mysite/apps/blog/templatetags'),
                     ]
