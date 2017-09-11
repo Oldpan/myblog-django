@@ -86,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "Mabinogi",               # use myblog in server
         'USER': "root",
-        'PASSWORD': 'sina223317',
+        'PASSWORD': 'Sina223317',  #Sina223317 for Linux;sina223317 for mac
         "HOST": '127.0.0.1'
     }
 }
