@@ -25,7 +25,8 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = '$4urvc13^v!)^#(c$ag#33%$r%u!-q3k46dq#v@t9ip5js*4mi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '45.76.205.134', 'coolesthacker.com', 'www.coolesthakcer.com']
 
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "Mabinogi",               # use myblog in server
         'USER': "root",
-        'PASSWORD': 'Sina223317',
+        'PASSWORD': 'sina223317',
         "HOST": '127.0.0.1'
     }
 }
@@ -136,7 +137,10 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "statics/")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
-                    os.path.join(BASE_DIR, 'apps/blog/templatetags'),
+                    # os.path.join(BASE_DIR, 'apps/blog/templatetags'),
+                   # use this path in server
+
+                    os.path.join(BASE_DIR, '/root/.pyenv/versions/3.6.1/envs/my-virtual-env-3.6.1/mysite/apps/blog/templatetags'),
                     ]
 
 # use this path in server
