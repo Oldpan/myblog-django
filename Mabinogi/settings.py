@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'Mabinogi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "Mabinogi",               # use myblog in server
+        'NAME': "myblog",               # use myblog in server
         'USER': "root",
         'PASSWORD': 'Sina223317',  #Sina223317 for Linux;sina223317 for mac
         "HOST": '127.0.0.1'
