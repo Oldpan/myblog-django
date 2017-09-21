@@ -143,5 +143,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
                     os.path.join(BASE_DIR, '/root/.pyenv/versions/3.6.1/envs/my-virtual-env-3.6.1/mysite/apps/blog/templatetags'),
                     ]
 
+
 # use this path in server
 # os.path.join(BASE_DIR, '/root/.pyenv/versions/3.6.1/envs/my-virtual-env-3.6.1/mysite/apps/blog/templatetags'),
