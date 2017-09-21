@@ -109,6 +109,22 @@
                     </ul>
                 </div>
 
+                <div class="widget widget-tag-cloud">
+                    <h3 style="color:black;font-family: 'Microsoft YaHei UI'" class="widget-title"><strong>标签云</strong></h3>
+                    <div class="tagcloud">
+                  {% get_tags as tag_list %}
+                     {% for tag in tag_list %}
+                          <a href="{% url 'blog:tag_page' tag.pk %}">{{ tag.name }}</a>
+                     {% empty %}
+                          <a href="#">暂无标签！</a>
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <div class="rss">
+                    <a style="font-family: 'Microsoft YaHei UI'; color: black" href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS订阅</a>
+                </div>
+
                 <div style="padding-top:30px;">
                     <ul class="list-group">
                         <li class="list-group-item">Advertise</li>
@@ -133,7 +149,6 @@
                        </div>
                     </div>
                 </div>
-
             </div>
 
 
