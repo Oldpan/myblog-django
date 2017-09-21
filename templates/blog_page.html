@@ -3,24 +3,23 @@
 {% load staticfiles %}
 {% load blog_tags %}
 
-{% block title %}Hack-技术文章{% endblock %}
+{% block title %}Oldpan的博客{% endblock %}
 
 {% block body %}
 <div class="content-body">
 
     <div class="container-fluid">
         <div class="row">
-
-                <left-side class="col-md-2">
-{#                leave to fill content#}
-                </left-side>
+            <left-side class="col-md-2">
+    {#                leave to fill content#}
+            </left-side>
          {% block main %}
             <main class="col-md-6">
                 {% for post in post_list %}
                 <article class="post post-1">
                     <header class="entry-header">
                         <h1 class="entry-title">
-                            <a style="color: rgb(81,153,107); font-family: 'Microsoft YaHei UI'" href="{{ post.get_absolute_url }}"><h2><strong>{{ post.title }}</strong></h2></a>
+                            <a style="color: black; font-family: 'Microsoft YaHei UI'" href="{{ post.get_absolute_url }}"><h2><strong>{{ post.title }}</strong></h2></a>
                         </h1>
                         <div class="entry-meta">
                             <button class="btn btn-primary btn-xs"><a style="color: white;font-family: 'Microsoft YaHei UI';" href="#">{{ post.category.name }}</a></button>
@@ -70,26 +69,33 @@
                  </div>
             </main>
 
-
         {% endblock main %}
 
-            <aside class="col-md-3">
-            {% block catalogue %}
-                {% endblock %}
-                <div class="widget widget-recent-posts">
-                    <h2 style="color:black;font-family: 'Microsoft YaHei UI'" class="widget-title"><strong>最新文章</strong></h2>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>最新文章</strong></li>
                     {% get_recent_posts as recent_post_list %}
-                    <ul>
                         {% for post in recent_post_list %}
-                        <li>
-                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                        </li>
-                        {% empty %}
-                        暂无文章
+                      <li class="list-group-item">
+                        <span class="badge">{{ post.views }}</span>
+                          <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                          {% empty %}
+                           暂无文章
                         {% endfor %}
-                    </ul>
-                </div>
-                <div class="widget widget-archives">
+                      </li>
+                    <li class="list-group-item"><strong>分类</strong></li>
+                    {% get_categories as category_list %}
+                    {% for category in category_list %}
+                      <li class="list-group-item">
+                        <span class="badge">{{ category.num_posts }}</span>
+                          <a href="{% url 'blog:category_page' category.pk %}">{{ category.name }}</a>
+                      </li>
+                    {% empty %}
+                    暂无分类
+                    {% endfor %}
+                </ul>
+
+                <div class="widget widget-archives" style="padding-top: 0px;">
                     <h3 style="color:black;font-family: 'Microsoft YaHei UI'"  class="widget-title"><strong>归档</strong></h3>
                     {% archives as date_list %}
                     <ul>
@@ -103,33 +109,92 @@
                     </ul>
                 </div>
 
-                <div class="widget widget-category">
-                    <h3 style="color:black;font-family: 'Microsoft YaHei UI'"  class="widget-title"><strong>分类</strong></h3>
-                    {% get_categories as category_list %}
-                    {% for category in category_list %}
-                        >
-                        <a href="{% url 'blog:category_page' category.pk %}">{{ category.name }} <span class="badge">{{ category.num_posts }}</span></a><br>
-                    {% empty %}
-                    暂无分类
-                    {% endfor %}
+                <div style="padding-top:30px;">
+                    <ul class="list-group">
+                        <li class="list-group-item">Advertise</li>
+                        <li class="list-group-item">
+                            <a href="https://www.vultr.com/?ref=7204333"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+{#                            <a href=""><img src="{% static 'img/vultr_banner.png' %}" class="img-responsive" /></a>#}
+                            <br />
+{#                            <a href="#"><img src="assets/img/ad2.jpg" class="img-responsive" /></a>#}
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="widget widget-tag-cloud">
-                    <h3 style="color:black;font-family: 'Microsoft YaHei UI'" class="widget-title"><strong>标签云</strong></h3>
-                    <div class="tagcloud">
-                  {% get_tags as tag_list %}
-                     {% for tag in tag_list %}
-                          <a href="{% url 'blog:tag_page' tag.pk %}">{{ tag.name }}</a>
-                     {% empty %}
-                          <a href="#">暂无标签！</a>
-                    {% endfor %}
+                <div style="padding-top:30px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        <h3 class="panel-title">全站搜索</h3>
+                        </div>
+                        <div class="panel-body">
+                        <input type="text" class="form-control" placeholder="搜索功能正在开发" />
+                         <hr />
+                         <a href="#" class="btn btn-info btn-sm btn-block" >搜吧</a>
+                       </div>
                     </div>
                 </div>
 
-                <div class="rss">
-                    <a style="font-family: 'Microsoft YaHei UI'; color: black" href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS订阅</a>
-                </div>
-            </aside>
+            </div>
+
+
+{#            <aside class="col-md-3">#}
+{#            {% block catalogue %}#}
+{#                {% endblock %}#}
+{#                <div class="widget widget-recent-posts">#}
+{#                    <h2 style="color:black;font-family: 'Microsoft YaHei UI'" class="widget-title"><strong>最新文章</strong></h2>#}
+{#                    {% get_recent_posts as recent_post_list %}#}
+{#                    <ul>#}
+{#                        {% for post in recent_post_list %}#}
+{#                        <li>#}
+{#                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>#}
+{#                        </li>#}
+{#                        {% empty %}#}
+{#                        暂无文章#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="widget widget-archives">#}
+{#                    <h3 style="color:black;font-family: 'Microsoft YaHei UI'"  class="widget-title"><strong>归档</strong></h3>#}
+{#                    {% archives as date_list %}#}
+{#                    <ul>#}
+{#                        {% for date in date_list %}#}
+{#                        <li>#}
+{#                            <a href="{% url 'blog:archives_page' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>#}
+{#                        </li>#}
+{#                        {% empty %}#}
+{#                        暂无归档#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </div>#}
+{##}
+{#                <div class="widget widget-category">#}
+{#                    <h3 style="color:black;font-family: 'Microsoft YaHei UI'"  class="widget-title"><strong>分类</strong></h3>#}
+{#                    {% get_categories as category_list %}#}
+{#                    {% for category in category_list %}#}
+{#                        >#}
+{#                        <a href="{% url 'blog:category_page' category.pk %}">{{ category.name }} <span class="badge">{{ category.num_posts }}</span></a><br>#}
+{#                    {% empty %}#}
+{#                    暂无分类#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{##}
+{#                <div class="widget widget-tag-cloud">#}
+{#                    <h3 style="color:black;font-family: 'Microsoft YaHei UI'" class="widget-title"><strong>标签云</strong></h3>#}
+{#                    <div class="tagcloud">#}
+{#                  {% get_tags as tag_list %}#}
+{#                     {% for tag in tag_list %}#}
+{#                          <a href="{% url 'blog:tag_page' tag.pk %}">{{ tag.name }}</a>#}
+{#                     {% empty %}#}
+{#                          <a href="#">暂无标签！</a>#}
+{#                    {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="rss">#}
+{#                    <a style="font-family: 'Microsoft YaHei UI'; color: black" href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS订阅</a>#}
+{#                </div>#}
+{#            </aside>#}
+
         <right-side class="col-md-1">
 {#            leave to fill content#}
         </right-side>

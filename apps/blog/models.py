@@ -61,7 +61,7 @@ class Blog(models.Model):
                 'markdown.extensions.codehilite',
             ])
 
-            self.abstract = strip_tags(md.convert(self.content))[:54]
+            self.abstract = strip_tags(md.convert(self.content))[:250]
 
         super(Blog, self).save(*args, **kwargs)
 
